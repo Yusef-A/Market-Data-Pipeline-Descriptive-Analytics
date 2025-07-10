@@ -1,0 +1,24 @@
+2025-07-09 10:52:52,543 WARNING: [MemorizedFunc(func=<function get_ticker_data at 0x000001CA071D8AE0>, location=.cache\joblib)]: Clearing function cache identified by data_utils\get_ticker_data
+2025-07-09 10:53:09,522 ERROR: Failed to download AAPL after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-09 10:53:41,786 ERROR: Failed to download MSFT after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-09 10:54:15,450 ERROR: Failed to download AMZN after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-09 10:54:48,149 ERROR: Failed to download GOOGL after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-09 10:55:20,830 ERROR: Failed to download JNJ after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-09 10:55:53,188 ERROR: Failed to download KO after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-09 10:56:25,594 ERROR: Failed to download SPY after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:11:07,122 WARNING: [MemorizedFunc(func=<function get_ticker_data at 0x000001F4698D5760>, location=.cache\joblib)]: Clearing function cache identified by data_utils\get_ticker_data
+2025-07-10 09:11:24,194 ERROR: Failed to download AAPL after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:14:56,197 ERROR: Failed to download AAPL after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:29:26,306 ERROR: Failed to download MSFT after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:29:58,548 ERROR: Failed to download AMZN after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:30:30,998 ERROR: Failed to download GOOGL after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:31:03,383 ERROR: Failed to download JNJ after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:31:35,889 ERROR: Failed to download KO after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:32:08,292 ERROR: Failed to download SPY after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:41:31,210 ERROR: Failed to download AAPL after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:42:03,812 ERROR: Failed to download MSFT after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:42:36,140 ERROR: Failed to download AMZN after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:43:08,461 ERROR: Failed to download GOOGL after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:43:42,072 ERROR: Failed to download JNJ after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:44:14,659 ERROR: Failed to download KO after 5 attempts: Can only use .str accessor with Index, not MultiIndex
+2025-07-10 09:44:47,143 ERROR: Failed to download SPY after 5 attempts: Can only use .str accessor with Index, not MultiIndex

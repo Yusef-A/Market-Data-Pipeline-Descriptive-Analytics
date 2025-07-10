@@ -29,24 +29,33 @@ def get_ticker_data(
         end = pd.Timestamp.today().strftime("%Y-%m-%d")
     for attempt in range(6): 
         try: 
-            return yf.download(
+            df = yf.download(
                 ticker, 
                 start = start, 
                 end = end, 
                 auto_adjust=True, # gives prices correctd to corporate actions whatever that means.. 
                 progress=False #download bar
             )
+            df.index = pd.to_datetime(df.index)
+            if isinstance(df.columns, pd.MultiIndex):
+                df.columns = df.columns.droplevel(1)
+            df.columns = df.columns.str.lower().str.replace(" ","_")
+            if "adj_close" in df.columns:
+                df = df.rename(columns={"adj_close": "close"})
+            return df
         except Exception as e: 
             if attempt == 5:
                 logging.error(f"Failed to download {ticker} after {attempt} attempts: {e}")
             time.sleep(2**(attempt -1))
-    return pd.DataFrame()
+    empty = pd.DataFrame()
+    empty.index = pd.DatetimeIndex([]) 
+    return empty
 def clean_data(
         df: pd.DataFrame,
         max_gap : int = 2,
         anomaly_thresh: float = 0.2
 ) -> pd.DataFrame: 
-    df = df.asfreq("B").ffill(limit=2)
+    df = df.asfreq("B").ffill(limit=max_gap)
     
     jumps = df["close"].pct_change().abs() #calcs % delta in the close price from one rw to the next
     for date, pct in jumps[jumps > anomaly_thresh].items():
@@ -62,14 +71,21 @@ def align_data(dfs: list[pd.DataFrame], symbols: list[str]) -> pd.DataFrame:
         for sym, df in zip(symbols, dfs)
         }
     return pd.concat(map, axis=1, join="inner")
-def store_clean_paraquets(
+def store_clean_parquets(
         dfs: dict[str, pd.DataFrame],
         outdir: str = "data/clean"
 )->None: 
     os.makedirs(outdir, exist_ok=True)
     for sym,df in dfs.items():
-        fname = f"{sym.lower()},paraquet"
+        fname = f"{sym.lower()}.parquet"
         tmp = os.path.join(outdir,fname +".tmp")
         final = os.path.join(outdir,fname)
-        df.to_paraquet(tmp)
+        df.to_parquet(tmp)
         os.replace(tmp,final)
+def store_merged(df, out_path):
+    """
+    Save the merged price‐table DataFrame to a Parquet file.
+    """
+    # make sure the directory exists
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    df.to_parquet(out_path)

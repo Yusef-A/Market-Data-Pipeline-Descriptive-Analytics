@@ -4,21 +4,21 @@ from data_utils import (
     load_tickers, 
     get_ticker_data, 
     clean_data, 
-    store_clean_paraquets, 
+    store_clean_parquets, 
     align_data, 
     store_merged
 )
 def main(symbols_path, out_clean, out_merged, start, end): 
     symbols = load_tickers("symbols.txt")
 
-    raw_dfs= [get_ticker_data(sym) for sym in symbols]
+    raw_dfs= [get_ticker_data(sym, start= start, end = end) for sym in symbols]
     clean_dfs= [clean_data(df) for df in raw_dfs]
 
-    store_clean_paraquets(dict(zip(symbols,clean_dfs)))
+    store_clean_parquets(dict(zip(symbols,clean_dfs)), out_clean)
 
     prices = align_data(clean_dfs,symbols)
 
-    store_merged(prices, "data/prices.paraquet")
+    store_merged(prices, out_merged)
 if __name__ == "__main__":
     p = argparse.ArgumentParser(
         description="Ingest, clean, and store OHLCV for a universe of tickers"
